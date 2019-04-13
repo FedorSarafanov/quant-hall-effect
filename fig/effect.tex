@@ -42,10 +42,11 @@
     \end{scope}
 }
 % \renewcommand{\vec}{ \vv}
+\renewcommand{\vec}{\mathbf} % for parts
 
 \begin{document}
 
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.85]
 
 \draw (0.2,0.2) -- ++(3,0) -- ++(0,3) -- ++ (-3,0) --cycle;
 \draw[fill=white] (0,0) -- ++(3,0) -- ++(0,3) -- ++ (-3,0) --cycle;
@@ -64,12 +65,12 @@
 \draw[angular, <-] (3.5,1) -- node[right,magenta] {$\vec{E}_\perp$} ++ (0,1);
 \draw[angular, ->] (0,4) -- node[above,magenta] {$\vec{E}$} ++ (3.2,0);
 %
-\lineann[1]{90}{3}{$b$};
+\lineann[1]{90}{3}{$d$};
 %
 \draw[angular, ->] (0.2,1.5) -- node[above,magenta] {$\vec{j}$} ++(0.7,0) ;
 %
-\draw (0.5,0.5) node {$\bigotimes$};
-\draw (0.6,0.55) node[right] {$\vec{B}$};
+% \draw (0.5,0.5) node {$\bigotimes$};
+% \draw (0.6,0.55) node[right] {$\vec{B}$};
 
 \begin{scope}[xshift=5cm]
 \draw (0.2,0.2) -- ++(3,0) -- ++(0,3) -- ++ (-3,0) --cycle;
@@ -93,8 +94,47 @@
 %
 \draw[angular, ->] (2.2,1.5) -- node[above,magenta] {$\vec{j}$} ++(0.7,0) ;
 %
-\draw (0.5,0.5) node {$\bigotimes$};
-\draw (0.6,0.55) node[right] {$\vec{B}$};	
+\end{scope}
+
+\draw (4,0) node {$\bigotimes$} node[above=0.5em] {$\vec{B}$};
+% \draw (0.6,0.55) 	
+
+
+\begin{scope}[xshift=10cm]
+\draw (0.2,0.2) -- ++(3,0) -- ++(0,3) -- ++ (-3,0) --cycle;
+\draw[fill=white] (0,0) -- ++(3,0) -- ++(0,3) -- ++ (-3,0) --cycle;
+\draw[fill=white] (0,3) -- ++(0.2,0.2) -- ++(3,0) -- ++ (-0.2,-0.2) --cycle;
+\draw[fill=white] (3,0) -- ++(0.2,0.2) -- ++(0,3) -- ++ (-0.2,-0.2) --cycle;
+% \draw[force,->] (1.5,1.5)  -- ++(0,0.7) node[above] {$\vec{F}_\text{L}$};% {$\vec{F}_\text{л}$};
+% \draw[force,->] (1.5,1.5)  -- ++(0,-0.7) node[below] {$\vec{F}_\text{K}$};% {$\vec{F}_\text{л}$};
+% \draw[force,->] (1.5,1.5) node[black,scale=1.5, fill=white] {$\circleddash$} -- ++(-0.7,0) node[left] {$\vec{v}$};
+% \foreach \i in {0.2,0.5,...,3.4} {
+	% \node[above, yshift=3pt] at (\i,3) {$-$};
+% }
+% \foreach \i in {0.2,0.5,...,3} {
+	% \/node[below, yshift=-0pt] at (\i,0) {$+$};
+% }
+%
+\draw[angular, ->, dashed] (0.5,1.2) coordinate (o) --  ++ (0,1) node[pos=1, above,magenta] {$\vec{E}_\perp$};
+\draw[angular, ->, dashed] (0.5,1.2) -- node[below,magenta] {$\vec{E}$} ++ (2,0) coordinate (ii);
+\draw[angular, ->] (0.5,1.2) --  ++  (2,1) coordinate (i)  node[pos=1, above,magenta] {$\vec{E}_\Sigma$};
+
+\draw pic["$\vartheta_{\hspace{-0.15em}H}$",draw=black,->,angle eccentricity=1.3,angle radius=1cm] {angle=ii--o--i};
+%
+\begin{scope}[yshift=3cm]
+\lineann[1.3]{0}{3}{$l$};
+\end{scope}
+
+\draw[fill=black] (0,1.5) circle (2pt) node[left] {1};
+\draw[fill=black] (3.1,1.6) circle (2pt) node[right] {2};
+\draw[fill=black] (1.5,3.1) circle (2pt) node[above=0.1em] {3};
+\draw[fill=black] (1.3,0) circle (2pt) node[below=0.1em] {4};
+\draw[fill=black] (1.7,0) circle (2pt) node[below=0.1em] {5};
+%
+% \draw[angular, ->] (2.2,1.5) -- node[above,magenta] {$\vec{j}$} ++(0.7,0) ;
+%
+% \draw (0.5,0.5) node {$\bigotimes$};
+% \draw (0.6,0.55) node[right] {$\vec{B}$};	
 \end{scope}
 \end{tikzpicture}
 \end{document}

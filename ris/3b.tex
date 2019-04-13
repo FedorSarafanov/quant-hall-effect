@@ -1,0 +1,198 @@
+\documentclass[tikz]{standalone}
+
+\usepackage[english,russian]{babel}
+\usepackage[T2A,T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\input{tikz.tex} 
+
+\usepackage
+    {
+        tikz,
+        pgfplots,
+        verbatim,
+        bm
+    }
+\usetikzlibrary
+    {
+        arrows,
+        patterns,
+        angles,
+        quotes,
+        calc, 
+        3d,  
+        backgrounds, 
+        positioning
+    }
+\usetikzlibrary{fadings,through}
+\tikzset
+    {
+        media/.style={font={\footnotesize\sffamily}},
+        wave/.style={
+            decorate,decoration={snake,post length=1.4mm,amplitude=2mm,
+                segment length=1mm},thick},   
+    }
+
+\input{disp}
+\begin{document}
+\begin{tikzpicture}
+% \xdef\darkness{0}
+% \xdef\op{0.3}
+
+% \xdef\SIZE{8}
+
+% \draw[step=1.0,blue,thick,opacity=\op] (0,0) grid (8,\SIZE);
+% \draw[step=0.5,blue,very thin,opacity=\op] (0,0) grid (8,\SIZE);
+
+% \foreach \i in {0,1,...,\SIZE} {
+%   \draw[opacity=\op] (0,\i) node [left] {\i};
+%   \draw[opacity=\op] (\i,0) node [below] {\i};
+% }
+
+
+\draw (0,0) rectangle (14,10);
+
+
+\begin{scope}[yshift=-0.5cm]
+    \draw[,fill=gray!10!white] (0,0.5) rectangle (3,4);
+    \draw[fill=black!80!purple,opacity=0.3] (0.2,4-0.2) rectangle (3-0.2,2.5+0.2);
+    \draw[fill=black!80!purple,opacity=0.5] (0.4,4-0.4) rectangle (3-0.4,2.5+0.4);
+    \begin{scope}[xshift=0.6cm]
+    \draw (0,{(4-0.2+2.5+0.2)/2}) node [scale=0.6] {\sevensegnum[slant = 8]{-}};
+    \draw (0.35,{(4-0.2+2.5+0.2)/2}) node [scale=0.6] {\sevensegnum[slant = 8]{0}};
+    \draw (0.7,{(4-0.2+2.5+0.2)/2}) node [scale=0.6] {\sevensegnum[slant = 8]{1}};
+    \draw (1.05,{(4-0.2+2.5+0.2)/2}) node [scale=0.6] {\sevensegnum[slant = 8]{5}};
+
+    \draw[fill=red, draw=none] (0.85,{3.05}) circle (0.9pt);
+    \end{scope}
+    \draw[] (2.15,{3.05}) node[white,yscale=0.3,xscale=0.22,every node/.style={transform shape}] (at) {\textbf{AMPS}};
+    \draw[] (2.15,{3.45}) node[white,yscale=0.3,xscale=0.22,every node/.style={transform shape}] (vt) {\textbf{VOLTS}};
+    \draw[fill=red, draw=none] (1.95,{3.45})  circle (1.2pt);
+    \draw[fill=red!20!black, draw=none] (1.95,{3.05})  circle (1.2pt);
+    \draw[white] (at.north) |- (2.28,3.20);
+    \draw[white] (vt.south) |- (2.28,3.30);
+    \draw[fill=black!50!white,rounded corners=1pt] (2.35,3.10) rectangle ++ (0.1,0.3);
+    \draw[fill=black,rounded corners=1pt] (2.35,3.20) rectangle ++ (0.1,0.2);
+
+    \draw[fill=black] (1.5,1) circle (4pt) node[above=0.2cm, scale=0.5] {\textbf{--}};
+    \draw[fill=cyan] (2,1) circle (4pt)  node[above=0.2cm,scale=0.5] {\textbf{GND}};
+    \draw[fill=red] (2.5,1) circle (4pt)  node[above=0.2cm,scale=0.5] {$\bm{+}$};
+    \draw[line width=1pt] (1.5,1) circle (2pt);
+    \draw[line width=1pt] (2,1) circle (2pt);
+    \draw[line width=1pt] (2.5,1) circle (2pt);
+
+    \draw[fill=black!70!green,rounded corners=4pt] (0.25cm,1cm-4pt) rectangle ++ (0.75,8pt) node[pos=0.5, white, scale=0.4] {POWER};
+
+    \draw[fill=gray!50!white] (0.4,2) coordinate (ru1) circle (5pt);
+    \draw[fill=gray!50!white] (0.4+0.73,2) coordinate (ru2) circle (5pt);
+    \draw[fill=gray!50!white] (2.6-0.73,2) coordinate (ru3) circle (5pt);
+    \draw[fill=gray!50!white] (2.6,2) coordinate (ru4) circle (5pt);
+
+    \draw (ru1) |- ($(ru1)!0.5!(ru2)+(0,0.4)$) coordinate (12) -| (ru2);
+    \draw (ru3) |- ($(ru3)!0.5!(ru4)+(0,0.4)$) coordinate (34) -| (ru4);
+
+    \draw[fill=gray!50!white] (0.4,2) coordinate (ru1) circle (5pt);
+    \draw[fill=gray!50!white] (0.4+0.73,2) coordinate (ru2) circle (5pt);
+    \draw[fill=gray!50!white] (2.6-0.73,2) coordinate (ru3) circle (5pt);
+    \draw[fill=gray!50!white] (2.6,2) coordinate (ru4) circle (5pt);
+
+    \draw (ru1) node[below=0.3cm,yscale=0.3,xscale=0.2,every node/.style={transform shape}] (at) {\textbf{FINE}};
+    \draw (ru2) node[below=0.3cm,yscale=0.3,xscale=0.2,every node/.style={transform shape}] (at) {\textbf{COARSE}};
+    \draw (ru3) node[below=0.3cm,yscale=0.3,xscale=0.2,every node/.style={transform shape}] (at) {\textbf{FINE}};
+    \draw (ru4) node[below=0.3cm,yscale=0.3,xscale=0.2,every node/.style={transform shape}] (at) {\textbf{COARSE}};
+
+    \draw (12) node[scale=0.29,fill=gray!10!white] {\textbf{CURRENT}};
+    \draw (34) node[scale=0.29,fill=gray!10!white] {\textbf{VOLTAGE}};
+
+    \draw[fill=red,draw=none] ($(ru1)!0.5!(ru2)+(0,-0.2)$) circle (2pt) node [above=0.2em,scale=0.5] {c.c.};
+
+    \draw[fill=green!30!black,draw=none] ($(ru3)!0.5!(ru4)+(0,-0.2)$) circle (2pt) node [above=0.2em,scale=0.5] {c.v.};
+
+    \draw[line width=3pt, gray!30!white] (0,1.5) -- (3,1.5);
+
+    \draw[fill=gray] ($(ru2)!0.5!(ru3)+(0,-0.2)-(2pt,0)$) rectangle ++ (4pt,4pt);
+    \draw ($(ru2)!0.5!(ru3)+(0,-0.0)$)  node[below=0.3cm,yscale=0.3,xscale=0.2,every node/.style={transform shape}] (at) {\textbf{AMPS}};
+    \draw[] (0,0.5) rectangle (3,4);
+\end{scope}
+
+
+\begin{scope}[xshift=3cm]
+    \draw[fill=gray] (0,0) rectangle (4,1);
+    \draw[fill=gray!90!yellow!50!white] (0+0.1,0+0.1) rectangle (1.5-0.1,1-0.1);
+
+\begin{scope}[xshift=0.11cm]
+\draw[line width=1pt] (0.05,0.5) -- ++ (0.1,0);
+\draw (0.35,0.5) node [scale=0.6] {\sevensegnum[slant = 4,oncolor=black,offcolor=]{0}};
+\draw (0.7,0.5) node [scale=0.6] {\sevensegnum[slant = 4,oncolor=black,offcolor=]{1}};
+\draw (1.05,0.5) node [scale=0.6] {\sevensegnum[slant = 4,oncolor=black,offcolor=gray!90!yellow!50!white]{5}};
+
+\draw[fill=black, draw=none] (0.85,0.3) circle (0.9pt);
+
+\draw [fill=gray!70!black] (2.5,0.5) circle (0.4cm);
+\draw[line width=3pt,gray!40!black] (2.5,0.5) -- ++(60:0.38);
+\draw[fill=white!60!black, draw=none] (2.5,0.5)  ++(60:0.3) circle (1pt);
+\draw[line width=3pt,gray!40!black] (2.5,0.5) -- ++(60+180:0.38);
+
+\begin{scope}[yshift=0.05cm]
+\draw[fill=black!70!gray,rounded corners=1.5pt] (1.4,0.1) rectangle ++ (0.3,0.1);
+\draw[fill=black!70!gray,rounded corners=1.5pt] (1.4,0.25) rectangle ++ (0.3,0.1);
+\draw[fill=black!70!gray,rounded corners=1.5pt] (1.4,0.40) rectangle ++ (0.3,0.1);
+\draw[fill=black!70!gray,rounded corners=1.5pt] (1.4,0.55) rectangle ++ (0.3,0.1);
+\draw[fill=black!70!gray!20!yellow,rounded corners=1.5pt] (1.4,0.70) rectangle ++ (0.3,0.1);    
+\end{scope}
+\end{scope}
+\draw[fill=black] (3.4,0.25) circle (3pt);
+\draw[fill=red!50!black] (3.4,0.25+0.4) circle (3pt);
+\draw[fill=red!50!black] (3.8,0.25) circle (3pt);
+\draw[fill=red!50!black] (3.8,0.25+0.4) circle (3pt);
+\end{scope}
+
+
+\end{tikzpicture} 
+\end{document}
+
+
+ %    % resonator
+ %    \draw [fill=black!\darkness] (5,0) rectangle ++(0.25,1);
+ %    \coordinate (res-right-right) at (5.25,0.5);
+ %    \coordinate (res-right-left) at (5,0.5);
+ %    \coordinate (res-right) at (5.12,0.5);    
+
+
+ %    \draw [fill=black!10] (3,0) rectangle ++(-0.25,1);
+ %    \coordinate (res-left-left) at (2.75,0.5);
+ %    \coordinate (res-left-right) at (3,0.5);    
+ %    \coordinate (res-left) at (2.87,0.5);    
+
+ %    \coordinate (pol1) at (0.5,0.5);    
+ %    \coordinate (pol2) at (0.5,2.5);    
+
+ %    % forward wave
+ %    \draw[line width=2pt,magenta] 
+ %    	% (LAS1-left) -- (res-right-right)
+ %    	(res-right-left) -- (res-left-right)
+ %    	(res-right-right) -- ++(0.5,0)
+ %    	% (res-left-left) -- (pol1) 
+ %    	% (pol1) -- ++ (-2,0) node [left, black] {накачка}
+ %    ;
+
+ %    % environment 
+ %    \draw[fill=black!30, opacity=0.5] (3.5, 0) rectangle (4.5,1);
+ %    \coordinate (env) at (4,0.5);
+
+ %    %caption
+
+ %    % \draw (pol1) node [left, yshift=-1em] {$4a$};
+ %    % \draw (pol2) node [right, yshift=1em] {$4b$};
+
+ %    \draw (res-right) node [ yshift=2em] {$4$};
+ %    \draw (res-left) node [ yshift=2em] {$3$}; 
+
+ %    \draw (env) node [yshift=2em] {$1$};    
+ %    % \draw (LAS1) node [yshift=2em] {$1$};    
+ %    % \draw (CAM1) node [yshift=2em] {$5$};    
+
+	% \foreach \i in {3.8,3.9,...,4.2} {
+ %    	\draw[red,->] (\i-0.5,-0.5) -- (\i,0);
+ %    }    
+
+ %    \node (a) at (3.5,-0.7) {2};

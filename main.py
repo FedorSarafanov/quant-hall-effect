@@ -24,6 +24,7 @@ y=array(df['U'])
 g = polyfit(x,y,9)
 error=poly1d(g)
 l,b,d= 22e-3, 0.38e-3 , 3.5e-3
+22 1.9 0.33
 
 rho=resistance*(d*b)/l
 print('Удельное сопротивление',rho)
